@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Foire aux questions - FlyandFly.fr</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Trouvez les réponses à vos questions pour réserver votre vol et décoller, piloter un avion ou bien louer votre jet privé avec sérénité grâce à la FAQ de FlyandFly">
+  	<link rel="icon" href="../assets/favicon-16x16.png" />
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+</head>
+<body>
+
+  <div id="app">Chargement...</div>
+  <script>
+    window.$docsify = {
+      name: 'FlyandFly',
+      themeColor: '#03e08e',
+      loadNavbar: true,
+      nameLink: 'documentation/',
+      auto2top: true,
+      notFoundPage: 'notfound.md',
+      ga : 'UA-80503033-4',
+
+      search: 'auto', // default
+
+      search : [
+        '/',            // => /README.md
+        ],
+      search: {
+       maxAge: 86400000, // Expiration time, the default one day
+       paths: 'auto', // or 'auto'
+       placeholder: 'Rechercher...',
+
+       // Localization
+       placeholder: {
+         '/': 'Rechercher...'
+       },
+
+       noData: 'Aucun résultat !',
+
+
+
+       // Headline depth, 1 - 6
+       depth: 2
+     }
+   }
+
+  </script>
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/zoom-image.min.js"></script>
+  <script>
+  if (typeof navigator.serviceWorker !== 'undefined') {
+    navigator.serviceWorker.register('sw.js')
+  }
+</script>
+
+</body>
+</html>

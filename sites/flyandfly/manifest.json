@@ -1,0 +1,15 @@
+{
+  "short_name": "FlyandFly",
+  "name": "FlyandFly France",
+  "icons": [
+    {
+      "src": "icons/apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "landscape",
+  "theme_color": "#ffffff"
+}

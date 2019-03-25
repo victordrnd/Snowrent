@@ -1,0 +1,102 @@
+<html>
+<head>
+  <title>
+    Panel Administrateur
+  </title>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <!-- UIkit CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.24/css/uikit.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" />
+  <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.6/quill.snow.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" />
+  <!-- UIkit JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.24/js/uikit.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.24/js/uikit-icons.min.js"></script>
+</head>
+<body>
+  <nav class="uk-navbar-container uk-margin" style="background-color:#fff" uk-navbar>
+    <div class="uk-navbar-left">
+      <a class="uk-navbar-item uk-logo" href="#"><img class="logo" src="../assets/logo.png" /></a>
+    </div>
+  </nav>
+  <div class="uk-container">
+
+
+    <h2 class="uk-text-center">Rédiger un article</h2>
+    <form class="uk-card uk-card-body uk-card-default">
+      <fieldset class="uk-fieldset">
+
+        <legend class="uk-legend">Contenu de l'article</legend>
+        <label>Titre de l'article</label>
+        <input type="text" class="uk-input uk-margin-small-bottom" placeholder="Titre de l'article"/>
+        <label class="uk-margin-medium-top">Corp de l'article</label>
+        <div id="editor-container" >
+        </div>
+        <a id="save" class="uk-button uk-button-danger uk-margin-medium-top uk-float-right">Publier</a>
+      </fieldset>
+
+    </form>
+
+
+  </div>
+
+
+
+
+
+</body>
+</html>
+<style>
+.logo {
+  width:60px;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration:none;
+}
+#editor-container {
+  height: 375px;
+}
+
+</style>
+<script>
+var quill = new Quill('#editor-container', {
+  modules: {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      [{ 'font': [] }],
+      ['bold', 'italic', 'underline'],
+      ['image', 'code-block'],
+
+      [{ align: '' }],
+      [{ align: 'right' }],
+      [{ align: 'center' }],
+      [{ align: 'justify' }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'color': [] }, { 'background': [] }]
+    ]
+  },
+  placeholder: 'Rédigez ici',
+  theme: 'snow'  // or 'bubble'
+});
+$('#save').click(function(){
+  var delta = quill.getContents();
+  console.log(delta);
+  $.ajax({
+    method: 'POST',
+    url: 'savearticle.php',
+    data : '',
+
+  });
+  var newdelta = JSON.stringify(delta);
+  document.write(newdelta);
+  
+})
+
+</script>

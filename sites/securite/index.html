@@ -1,0 +1,372 @@
+<html>
+<head>
+  <title>SIO - Cryptage</title>
+<meta charset="utf-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.23/css/uikit.min.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- UIkit JS -->
+  <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+  <script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.23/js/uikit.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.23/js/uikit-icons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  </head>
+<body>
+  <nav class="uk-navbar-container uk-margin" style="background-color: #fff" uk-navbar="mode: click">
+
+      <div class="uk-navbar-center">
+         <a class="uk-navbar-item uk-logo uk-text-center" href="#" style=""><h1>SIO - SI1. Le cryptage</h1></a>
+
+
+      </div>
+  </nav>
+  <div class="uk-container">
+
+    <div class="uk-card uk-card-default uk-card-body uk-width-1-1@S">
+        <h3 class="uk-card-title">A quoi sert le cryptage ?</h3>
+        <p>Le cryptage sert à plusieurs chose, il peut servir à authentifier une information, la dissimuler ou encore à la conserver et protéger.</p>
+    </div>
+
+
+  <h1 class="uk-heading-divider">Définition</h1>
+    <div class="uk-alert-primary" uk-alert>
+
+        <p> Cryptographie : Ensemble des procédés visant à crypter des informations pour en assurer la confidentialité entre l'émetteur et le destinataire.</p>
+    </div>
+    <div class="uk-alert-success" uk-alert>
+
+        <p> Cryptanalyse : Science qui consiste à tenter de déchiffrer un message ayant été chiffré sans posséder la clé de chiffrement</p>
+    </div>
+    <div class="uk-alert-warning" uk-alert>
+
+        <p> Cryptogramme : Ce qui est écrit en caractères secrets, en langage chiffré</p>
+    </div>
+    <div class="uk-alert-danger" uk-alert>
+
+        <p> Cryptologie : Étude, science (conception, analyse) des messages secrets, des cryptogrammes.</p>
+    </div>
+  <h1 class="uk-heading-divider">1. Cryptage par algorithme</h1>
+
+  <div class="uk-alert-primary" uk-alert>
+
+      <p> Clé de chiffrement: Paramètre utilisé en entrée d'une opération cryptographique (chiffrement, déchiffrement, scellement, signature numérique, vérification de signature).</p>
+  </div>
+  <div class="uk-alert-success" uk-alert>
+
+      <p> Chiffrement : Procédé de cryptographie grâce auquel on souhaite rendre la compréhension d'un document impossible à toute personne qui n'a pas la clé de (dé)chiffrement</p>
+  </div>
+
+  <div class="uk-grid-match uk-child-width-1-2@m" uk-grid>
+      <div>
+        <h3 class="uk-text-center">Cryptage symétrique <span class="uk-badge uk-padding-small"> Rapide mais peu sécurisé </span></h3>
+          <p>Le chiffrement symétrique (ou chiffrement à clé privée) consiste à utiliser la même clé pour le chiffrement et le déchiffrement.</p>
+      </div>
+      <div>
+        <h3 class="uk-text-center">Cryptage asymétrique <span class="uk-badge uk-padding-small"> Lent mais très sécurisé </span></h3>
+          <p>Le chiffrement asymétrique (chiffrement à clé publique et privée) consiste à utiliser un clé différente pour le chiffrement et le déchiffrement. </p>
+      </div>
+  </div>
+
+      <div class="uk-card uk-card-default uk-card-body uk-width-1-1@s uk-margin-medium-top">
+        <h3 class="uk-text-center">Clé de session <span class="uk-badge uk-padding-small"> Hybride des deux technologies précédentes </span></h3>
+            <ul>
+              <p>Le principe est le suivant:</p>
+              <li>Côté expéditeur :</li>
+- création d'une clé de session spécifique au message et à usage unique,</br>
+- chiffrement de la clé de session avec un algorithme asymétrique en utilisant la clé publique du destinataire, le destinataire peut déchiffrer la clé de session avec sa clé privée et l'expéditeur et le destinataire disposent donc d'une clé de session commune,</br>
+- le message est chiffré paré à être envoyé.</br>
+- utilisation d'un algorithme symétrique pour chiffrer le message en utilisant la clé de session,</br>
+</br>
+  <li>Côté destinataire, on aura :</li>
+
+- appel au même algorithme asymétrique pour déchiffrer la clé de session avec sa clé privée,</br>
+- appel au même algorithme symétrique pour déchiffrer le message avec la clé de session.
+            </ul>
+
+      </div>
+
+
+<p class="uk-text-lead">Exemple de cryptage symétrique : L'algorithme AES</p>
+<div class="uk-margin">
+  <label>Clé AES</label>
+    <textarea id="AES-key" class="uk-input " rows="5"  placeholder="Clé AES"  ></textarea>
+</div>
+
+<div class="uk-margin">
+  <label>Message à crypter</label>
+    <textarea id="aes-message" class="uk-textarea" rows="5" placeholder="Tapez votre message dans cette zone"></textarea>
+</div>
+<textarea style="display:none" id="hidden"></textarea>
+<button id="aes-encrypt" class="uk-button uk-button-default">Crypter</button>
+
+<p class="uk-text-lead">Exemple de cryptage asymétrique : L'algorithme RSA</p>
+<button id="rsa-makekey" class="uk-button uk-button-default green-btn">Générer de nouvelles clé RSA</button>
+<div class="uk-margin">
+  <label>Clé Public <span class="uk-badge " style="background-color:#03e08e"> Permet de crypter le message</span></label>
+    <textarea id="rsa-public-key" class="uk-textarea " rows="5"  placeholder=""></textarea>
+</div>
+
+<div class="uk-margin">
+  <label>Clé Privée <span class="uk-badge " style="background-color:#03e08e" > Permet de décrypter le message</span></label>
+    <textarea  id="rsa-private-key" class="uk-textarea " rows="5" placeholder=""></textarea>
+</div>
+
+<div class="uk-margin">
+  <label>Message à crypter/décrypter</label>
+    <textarea id="rsa-message" class="uk-textarea" rows="5" placeholder="Tapez votre message dans cette zone"></textarea>
+</div>
+<button id="rsa-encrypt" class="uk-button uk-button-default">Crypter</button>
+<button id="rsa-decrypt" class="uk-button uk-button-default">Décrypter</button>
+
+
+
+
+  <h1 class="uk-heading-divider uk-margin-large-top">2. Signature électronique</h1>
+  <div class="uk-alert-primary" uk-alert>
+
+      <p> Hachage : Procédé par lequel une donnée de taille arbitraire est associé à une image fixe et dont la propriété essentielle est qu'elle est pratiquement impossible à inverser</p>
+  </div>
+
+  <p>
+    La plupart des sites stockent les mots de passe de leurs utilisateurs dans leurs base de données de manière hacher. Ainsi si quelqu'un arrive à la pirater, les pirates n'auront pas accès aux mots de passes en clair mais à leurs empreintes. Sachant qu'il est impossible de retrouver un mot de passe depuis une empreinte ce système est un moyen fiable de stocker des mots de passe.
+    Le hachage permet aussi de s'assurer qu'une information n'a pas été altéré. L'émetteur calcule une empreinte du message et le destinataire calcule à son tour l'empreinte et la compare avec celle de l'émetteur. Si l'empreinte est la même, le message est le même sinon il a été modifié.
+  </br></br><span uk-icon="warning"></span> Sachant qu'un mot de passe haché donnera toujours la même empreinte il est conseillé d'utiliser des mots de passe difficiles que personne n'a jamais utilisé. Les principaux mot de passe (azer123, admin, test ...) sont stockés dans des bases de données avec leurs empreintes. Il est donc possible de retrouver le mot de passe en clair à partir de son empreinte pour ces derniers.
+  </p>
+  <div class="uk-child-width-1-1@s uk-grid-match" uk-grid>
+      <div>
+          <div class="uk-card  uk-card-body">
+              <h3 class="uk-card-title">Votre texte</h3>
+              <textarea id="texte" o class="uk-textarea" placeholder="Votre texte à hacher ici" ></textarea>
+          </div>
+      </div>
+  </div>
+<div class="uk-child-width-1-2@s uk-grid-match" uk-grid uk-scrollspy="cls: uk-animation-fade; target: > div > .uk-card; delay: 20; repeat: true">
+<div>
+    <div class="uk-card uk-card-secondary uk-card-hover uk-card-body">
+        <h3 class="uk-card-title">MD5 <span class="uk-badge"> Dépassé </span></h3>
+        <p id="md5" style="overflow-wrap:break-word"></p>
+    </div>
+</div>
+  <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body" >
+          <h3 class="uk-card-title">SHA-1</h3>
+          <p id="sha1" style="overflow-wrap:break-word"></p>
+      </div>
+  </div>
+  <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <h3 class="uk-card-title">SHA-256</h3>
+          <p id="sha256" style="overflow-wrap:break-word"></p>
+      </div>
+  </div>
+    <div>
+        <div class="uk-card  uk-card-hover uk-card-primary uk-card-body" >
+            <h3 class="uk-card-title">SHA-512</h3>
+            <p id="sha512" style="overflow-wrap:break-word"></p>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-secondary uk-card-hover uk-card-body">
+            <h3 class="uk-card-title">SHA-3 <span class="uk-badge"> empreinte : 512 bits </span></h3>
+            <p id="sha3" style="overflow-wrap:break-word"></p>
+        </div>
+    </div>
+      <div>
+          <div class="uk-card uk-card-default uk-card-hover uk-card-body" >
+              <h3 class="uk-card-title">SHA-3 <span class="uk-badge"> empreinte : 256 bits </span></h3>
+              <p id="sha3256" style="overflow-wrap:break-word"></p>
+          </div>
+      </div>
+
+</div>
+
+
+  <h1 class="uk-heading-divider">3. Certificat électronique</h1>
+  <div class="uk-alert-primary" uk-alert>
+
+      <p> Certificat électronique : Un certificat électronique (aussi appelé certificat numérique ou certificat de clé publique) peut être vu comme une carte d'identité numérique. Il est utilisé principalement pour identifier et authentifier une personne physique ou morale, mais aussi pour chiffrer des échanges.</p>
+  </div>
+  <div class="uk-alert-success" uk-alert>
+
+      <p> PKI (Public Key Infrastructure) : Une infrastructure à clés publiques est un ensemble de composants physiques (des ordinateurs, des équipements cryptographiques logiciels ou matériel ou encore des cartes à puces), de procédures humaines (vérifications, validation) et de logiciels (système et application) destiné à gérer les clés publiques des utilisateurs d'un système.</p>
+  </div>
+
+  <div class="uk-card uk-card-default uk-card-body uk-width-1-1@s uk-margin-medium-top">
+      <h3 class="uk-card-title">Les différentes classe de certificat.</h3>
+      <p><b>1. Classe I</b>
+Ne garantit pas l'identité du titulaire du certificat mais seulement l'existence de son adresse e-mail.
+</br>
+<b>2. Classe II</b>
+Garantit les informations du titulaire et de son entreprise (contrôlées par l'autorité de certification sur pièces justificatives transmises par voie postale).
+</br>
+<b>3. Classe III</b>
+Idem à la Classe II, assure un contrôle supplémentaire de l’identité du titulaire. </p>
+<h3 class="uk-card-title">Les différents type de certificat.</h3>
+<p><ul>
+
+<li>Le certificat client, stocké sur le poste de travail de l'utilisateur</li></br>
+<li>Le certificat serveur installé sur un serveur web permet d'assurer le lien</li></br>
+<li>Le certificat VPN est un type de certificat installé dans les équipement</li></ul>
+ </p>
+  </div>
+  <div class="uk-section uk-section-default">
+      <div class="uk-container">
+
+          <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+              <div>
+                <h3>Cetificat SSL / TLS</h3>
+                  <p>Le <b>SSL (Secure Socket Layer)</b> est un protocole de sécurité. Il est aujourd'hui nommé <b>TLS (Transport Layer Security)</b>, version du SSL plus sécurisée.
+Le SSL / TLS créé un canal sécurisé entre le client et un serveur.
+Les informations échangées dans ce canal sont chiffrées pour empêcher toute interception de données "en clair" par un pirate informatique.
+Seul le serveur est en mesure de déchiffrer les informations transmises.</p>
+              </div>
+              <div>
+                <h3>Certificat SET et 3D Secure</h3>
+                  <p><b>3-D Secure</b> est un protocole sécurisé de paiement sur Internet. 3-D Secure a été développé
+par Visa et MasterCard <b>limitant les risques de fraude sur Internet</b>, liés à l&#39;utilisation frauduleuse
+de numéros de carte de paiement. Il a pour but de s’assurer, lors de chaque paiement en ligne,
+que la carte est utilisée par son véritable titulaire.</p>
+
+              </div>
+              <div>
+                <h3>Protocole Kerberos</h3>
+                  <p><b>Kerberos </b>est un protocole d'authentification réseau qui repose sur un mécanisme de clés secrètes (chiffrement symétrique) et l'utilisation de tickets, et non de mots de passe en clair, <b>évitant ainsi le risque d'interception</b> frauduleuse des mots de passe des utilisateurs. Kerberos a d'abord été mis en œuvre sur des systèmes Unix.</p>
+              </div>
+          </div>
+
+      </div>
+  </div>
+
+<a href="cours.pdf" class="uk-text-center" style="color:#03e08e">
+
+<span uk-icon="download"></span> Télécharger le cours</a>
+
+
+
+
+
+  <script>
+var key = forge.random.getBytesSync(16);
+  var iv = forge.random.getBytesSync(8);
+
+
+
+    $("#aes-encrypt").click(function() {
+      var aesmessage = $('#aes-message').val();
+      var cipher = forge.cipher.createCipher('AES-CBC', key);
+      cipher.start({iv: iv});
+      cipher.update(forge.util.createBuffer(aesmessage));
+      cipher.finish();
+      var encrypted = cipher.output;
+      // outputs encrypted hex
+
+    $('#aes-message').val(encrypted.toHex());
+
+
+  });
+
+    var rsaKeySize = 2048;
+    var rsaPrivateKey = $("#rsa-private-key");
+    var rsaPublicKey = $("#rsa-public-key");
+    var rsaMessage = $("#rsa-message");
+    var rsaCt = $("#rsa-message");
+
+    $("#rsa-makekey").click(function() {
+        forge.pki.rsa.generateKeyPair({bits: rsaKeySize, workers: 2}, function(err, keypair) {
+            var privatePem = forge.pki.privateKeyToPem(keypair.privateKey);
+            rsaPrivateKey.val(privatePem);
+
+            var publicPem = forge.pki.publicKeyToRSAPublicKeyPem(keypair.publicKey);
+            rsaPublicKey.val(publicPem);
+        });
+    });
+
+    $("#rsa-encrypt").click(function() {
+      try {
+          var publicKey = forge.pki.publicKeyFromPem(rsaPublicKey.val());
+          // var plaintextBuffer = forge.util.createBuffer(rsaMessage.val(), 'utf8'); <-- old
+          var plaintextBytes = forge.util.encodeUtf8(rsaMessage.val());
+
+          var encryptedBytes = publicKey.encrypt(plaintextBytes);
+          rsaCt.val(forge.util.encode64(encryptedBytes));
+      }
+      catch (e) {
+          console.log(e);
+          alert("Impossible de crypter ce message.");
+      }
+  });
+
+  $("#rsa-decrypt").click(function() {
+      try {
+          var privateKey = forge.pki.privateKeyFromPem(rsaPrivateKey.val());
+          var ctBytes = forge.util.decode64(rsaCt.val());
+
+          var plaintextBytes = privateKey.decrypt(ctBytes);
+          // rsaMessage.val(plaintextBytes.toString('utf8')); <-- old
+          rsaMessage.val(forge.util.decodeUtf8(plaintextBytes));
+      }
+      catch (e) {
+          console.log(e);
+          alert("Impossible de décrypter ce message.");
+      }
+  });
+  </script>
+
+</div>
+  </body>
+</html>
+<script src="src/md5.min.js"></script>
+<script src="src/sha3.js"></script>
+
+
+
+<script>
+var input = document.getElementById('texte');
+input.addEventListener('keyup', function (e){
+
+
+  text = input.value;
+  var md5 = cryptmd5(text);
+  document.getElementById('md5').innerHTML = md5;
+
+
+
+  var md = forge.md.sha256.create();
+  md.update(text);
+  //console.log(md.digest().toHex());
+  document.getElementById('sha256').innerHTML = md.digest().toHex();
+
+  var md = forge.md.sha1.create();
+md.update(text);
+//console.log(md.digest().toHex());
+document.getElementById('sha1').innerHTML = md.digest().toHex();
+
+var md = forge.md.sha512.create();
+md.update(text);
+document.getElementById('sha512').innerHTML = md.digest().toHex();
+
+var shatest256 = sha3_256(text);
+document.getElementById('sha3256').innerHTML = shatest256;
+
+var test = sha3_512(text);
+document.getElementById('sha3').innerHTML = test;
+},false);
+
+
+
+
+
+
+</script>
+<style>
+textarea {
+  height:100px;
+}
+.green-btn {
+  border-color: #03e08e;
+display:block;
+margin-left:auto;
+margin-right:auto;
+}
+</style>

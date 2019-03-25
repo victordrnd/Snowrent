@@ -1,0 +1,333 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>FlyandFly.fr - Choisissez, réservez, décollez !</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <meta name="description" content="FlyandFly est une plateforme de réservation en ligne qui s’adresse à tous les particuliers et à tous les professionnels qui souhaitent louer leur appareil d’une façon simple et pratique." />
+  <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/css/uikit.min.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<!-- UIkit JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80503033-4"></script>
+	<link rel="icon" href="../assets/favicon-16x16.png" />
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80503033-4');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": "1",
+      "item": {
+        "@id": "https://flyandfly.fr",
+        "name": "Accueil"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": "2",
+      "item": {
+        "@id": "https://flyandfly.fr/pages/proprietaire",
+        "name": "propriétaire"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <div class="full">
+    <nav>
+
+<span class="logo" style="margin-left:4%;"><span style="animation:fly 0.7s ease-in forwards; font-size:36px;font-family: 'Caveat', cursive; color:#2a2a2f;">Fly&Fly</span><img src="../assets/bottom.svg" style="min-width:50px;margin-left:-100px;margin-top:30px;width:4%; animation:logo 0.7s forwards ease-in"/></span>
+<a href="../connexion.php" style="float:right;margin-right:20px;margin-top:20px;background:#03e08e;color:#fff;letter-spacing:1px;" class="btn ">Connexion</a>
+<a href="../connexion.php" id="flight" style="float:right;margin-right:20px;margin-top:20px;background-color:transparent;letter-spacing:1px;color:#000" class="btn ">Réserver un vol</a>
+    </nav>
+    <button class="uk-text-baseline" style="position:absolute;left:50%;top:45px;transform:translateX(-50%);background:transparent;color:#000;border:none;" type="button">Menu <font color="#03e08E"><i class="fas fa-angle-down"></i></font></button>
+
+
+<div class="uk-width-large"  style="border-radius:6px;" uk-dropdown="pos: bottom-center; delay-hide:100">
+
+  <div class="uk-dropdown-grid uk-child-width-1-3@l uk-child-width-1-1@m" style="border-radius:10px;" uk-grid>
+      <div>
+          <ul class="uk-nav uk-dropdown-nav">
+              <li class="uk-nav-header" style="color:#03e08e;">DESTINATIONS </li>
+              <li><a href="#" title="Paris" style="color:#000;">Paris</a></li>
+              <li><a href="#" title="Genève" style="color:#000;">Genève</a></li>
+              <li><a href="#" title="Londres" style="color:#000;">Londres</a></li>
+              <li><a href="#" title="New York" style="color:#000;">New York</a></li>
+              <li><a href="#" title="Nice" style="color:#000;">Nice</a></li>
+              <li><a href="#" title="Courchevel" style="color:#000;">Courchevel</a></li>
+              <li><a href="#" title="Voir plus" style="color:#000;">Voir plus <font color="#03e08E"><i class="fas fa-angle-right"></i></font></a></li>
+          </ul>
+      </div>
+      <div>
+          <ul class="uk-nav uk-dropdown-nav">
+              <li class="uk-nav-header" style="color:#03e08e;">VOUS ÊTES ?</li>
+              <li><a href="pilote" title="Pilote" style="color:#000;">Pilote</a></li>
+              <li><a href="proprietaire" title="Propriétaire" style="color:#000;">Propriétaire</a></li>
+              <li><a href="passager" title="Passager" style="color:#000;">Passager</a></li>
+          </ul>
+      </div>
+      <div>
+          <ul class="uk-nav uk-dropdown-nav">
+              <li class="uk-nav-header" style="color:#03e08e;">AVIONS</li>
+              <li><a href="#" title="Turbopropulseur" style="color:#000;">Turbopropulseur</a></li>
+              <li><a href="#" title="Very-light" style="color:#000;">Very-light</a></li>
+              <li><a href="#" title="Light" style="color:#000;">Light</a></li>
+              <li><a href="#" title="Mid-size" style="color:#000;">Mid-size</a></li>
+              <li><a href="#" title="Super Mid-size" style="color:#000;">Super Mid-size</a></li>
+              <li><a href="#" title="Large" style="color:#000;">Large</a></li>
+              <li><a href="#" title="Voir plus" style="color:#000;">Voir plus <font color="#03e08E"><i class="fas fa-angle-right"></i></font></a></li>
+
+          </ul>
+      </div>
+
+  </div>
+</div>
+
+<div class="container" style="margin-top:-30px;">
+  <h1 class="text-center" style="margin-bottom:50px;font-size:50px;">Vous êtes propriétaire ?</h1>
+
+  <div class="uk-card-header" style="background-color:#03e08e;border-top-left-radius:8px;border-top-right-radius:8px;">
+
+<h5 style="color:#fff;text-align:center; letter-spacing:2px;"><a href="https://flyandfly.fr/register.php?status=proprietaire">Inscrivez vous ici <i class="fas fa-arrow-right"></i></a></h5>
+
+
+
+</div>
+  <div class="uk-card uk-card-default uk-card-body uk-width-1-1@m" >
+
+    <article class="uk-article" style="color:#000;text-align:center;width:85%;display:block;margin-left:auto;margin-right:auto;line-height:35px;">
+
+      <!--<h1 class="uk-article-title"><a class="uk-link-reset" href="">Vous êtes passager ?</a></h1>-->
+
+      <!--<p class="uk-article-meta">Written by <a href="#">Super User</a> on 12 April 2012. Posted in <a href="#">Blog</a></p>-->
+
+      <p class="uk-text-lead" style="font-size:25px;">FlyandFly est une plateforme de réservation en ligne qui s’adresse à tous les particuliers et à tous les professionnels qui souhaitent louer leur appareil d’une façon simple et pratique.
+</p>
+<div class="uk-child-width-1-1@s" uk-grid>
+    <div>
+        <div class="uk-card uk-card-default uk-card-large uk-card-body" uk-scrollspy="cls:uk-animation-fade; repeat:true">
+            <h3 class="uk-card-title" style="color:#000;">Professionnels</h3>
+            <p>Vous êtes un professionnel et vous souhaitez louer vos appareils, alors inscrivez votre entreprise sur FlyandFly et ajouter les appareils que vous souhaitez mettre en location. Renseignez les disponibilités de votre avion et notre plateforme s’occupe de trouver des pilotes. Si vous avez toutefois des pilotes, vous pouvez aussi les ajoutez directement sur votre compte et les attitrés aux avions correspondants. Enfin si vous avez des vols à vide, proposez les directement sur notre site et les passagers intéressés par ces trajets réserveront directement sur notre plateforme. Vous n’aurez alors qu’à traiter uniquement des dernières modalités du vol avec les passagers. FlyandFly vous simplifiera donc la mise en relation avec les passagers et s’occupera directement des dispositions du vol et du paiement. </p>
+        </div>
+    </div>
+
+</div>
+</br>
+
+</br>
+    <div class="uk-card-default uk-card-body" uk-scrollspy="target: > div; cls:uk-animation-fade; delay: 500;repeat:true">
+<!--<img src="https://images.unsplash.com/photo-1506695939086-156c2eff767b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0289c316d5dbbc1843c1129bbe38914a&auto=format&fit=crop&w=1051&q=80" style="width:300px;float:right;border-radius:10px;margin-left:20%"/>-->
+<div>
+
+
+  <h3 class="uk-card-title" style="color:#000;text-align:center">Particuliers</h3>
+      <p style="text-align:center">Vous êtes particulier, vous pouvez aussi proposer votre appareil à la location sur notre site. Inscrivez vous et renseignez les disponibilités de votre appareil. Il pourra être loué à des pilotes possédant leur licence de pilote privée ou à des pilotes ayant leur licence de pilotage commercial suivant la catégorie de l’avion et l’utilisation que vous souhaitez en faire. FlyandFly s’occupe de tous et vous n’aurez simplement qu’à attendre la rémunération de votre location.</p>
+</div>
+</div>
+    </br>
+    <img id="image" src="../assets/proprietaire.jpg" style="width:100%;height:600px;border-radius:10px;"/>
+    </br>
+    </br>
+    <div class="uk-card-default uk-card-body" uk-scrollspy="target: > div; cls:uk-animation-fade; delay: 500;repeat:true">
+<!--<img src="https://images.unsplash.com/photo-1506695939086-156c2eff767b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0289c316d5dbbc1843c1129bbe38914a&auto=format&fit=crop&w=1051&q=80" style="width:300px;float:right;border-radius:10px;margin-left:20%"/>-->
+<div>
+
+
+  <h3 class="uk-card-title" style="color:#000;text-align:center">Expérience FlyandFly</h3>
+      <p style="text-align:center">Vous pouvez aussi proposez des expériences FlyandFly dans le but de faire découvrir à des passagers des lieux emblématiques ou bien encore de les initier au plaisir de l’aviation.
+</p>
+</div>
+</div>
+
+
+</br>
+</br>
+<div class="uk-child-width-1-3@s uk-grid-match" uk-grid>
+    <div>
+        <div class="uk-card uk-card-default uk-card-large uk-card-body" uk-scrollspy="cls: uk-animation-slide-left; repeat: true">
+            <h3 class="uk-card-title" style="color:#000;">Choisissez</h3>
+            <i class="far fa-calendar-alt fa-6x " style="color:#03e08E"></i>
+            <p>Renseignez vos disponibilités et FlyandFly s’occupe de trouver les vols qui correspondent à vos demandes.</p>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-large uk-card-body" >
+            <h3 class="uk-card-title" style="color:#000;">Rencontrez</h3>
+            <i class="fas fa-hands-helping fa-6x " style="color:#03e08E"></i>
+            <p>Vous serez mis en relation avec les passagers qui ont réservés un vol coïncidant avec vos disponibilités.</p>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-large uk-card-body" uk-scrollspy="cls: uk-animation-slide-right; repeat: true">
+            <h3 class="uk-card-title" style="color:#000;">Gagnez</h3>
+            <i class="fas fa-plane-departure fa-6x " style="color:#03e08E"></i>
+            <p>Décollez et pilotez un jet privé et emmenez des passagers aux quatre coins du monde.</p>
+        </div>
+    </div>
+</div>
+
+</br>
+
+</br>
+<div class="uk-grid-collapse uk-child-width-expand@s uk-text-center" uk-grid>
+    <div>
+        <div class="uk-background-default uk-padding">
+            <i class="far fa-calendar-alt fa-2x" style="color:#000"></i><p>Choisissez </p></div>
+    </div>
+    <div>
+        <div class="uk-background-default uk-padding"><i class="fas fa-angle-right fa-2x pivote" style="color:#03e08e;vertical-align:middle"></i></div>
+    </div>
+    <div>
+        <div class="uk-background-default uk-padding ">
+          <i class="fas fa-hands-helping fa-2x"></i>
+          <p>Rencontrez</p>
+        </div>
+    </div>
+    <div>
+        <div class="uk-background-default uk-padding"><i class="fas fa-angle-right fa-2x pivote" style="color:#03e08e;vertical-align:middle"></i></div>
+    </div>
+    <div>
+        <div class="uk-background-default uk-padding ">
+          <i class="fas fa-plane-departure fa-2x"></i>
+          <p>Pilotez</p>
+        </div>
+    </div>
+
+</div>
+
+        <a href="pilote" style="color:#03e08E;float:left"><i class="fas fa-arrow-circle-left"></i> Vous êtes pilote ? </a> <a href="passager" style="color:#03e08E;float:right">Vous êtes passager ? <i class="fas fa-arrow-circle-right"></i></a>
+
+
+
+
+  </article>
+
+    </div>
+
+    <?php
+    include ''.$_SERVER['DOCUMENT_ROOT'].'/includes/footer.php';
+    ?>
+
+</html>
+<script>
+$(".logo").click(function(){
+  window.location.href = '../index.html'
+});
+</script>
+
+<style>
+a{
+  color:#fff;
+  text-decoration: none;
+}
+a:hover{
+  color:#fff;
+  text-decoration: none;
+
+}
+.twitter:hover {
+  color:#03e08e;
+}
+.linkedin:hover {
+  color:#03e08e;
+}
+.vimeo:hover {
+  color:#03e08e;
+}
+.grey {
+  background-color: #2a2a2f;
+  width:100%;
+  margin-top: -111px;
+}
+.grey .uk-text-lead {
+  font-size:1.3rem;
+}
+.grey .uk-card-default {
+  box-shadow:none;
+}
+body {
+  overflow:auto;
+
+}
+::-webkit-scrollbar {
+display: none;
+}
+.form-control {
+  border:2px solid #2a2a2f;
+  color:#2a2a2f;
+}
+.full .uk-card-default .uk-card-title {
+  color:#fff;
+}
+.uk-card-default h3 {
+  font-weight:300;
+}
+
+
+@keyframes logo {
+  0% {
+    transform: rotate(16deg);
+  }
+
+  75% {
+    transform: rotate(12deg) translateX(75px) translateY(-20px);
+  }
+  100% {
+    transform: translateX(180px) translateY(-20px);
+  }
+}
+
+@keyframes fly {
+  0% {opacity:0}
+  100%{opacity:1}
+}
+
+@media (min-width: 768px){
+.container{
+    max-width: 1124px;
+}
+}
+@media (min-width: 1200px){
+.container {
+    max-width: 1624px;
+}
+}
+@media screen and (max-width: 800px) {
+  #flight{display:none}
+
+	html,body {
+		width:100%;
+		margin:0px;
+		padding:0px;
+		overflow-x:hidden;
+	}
+
+}
+.uk-navbar-nav {
+    /* display: flex; */
+    margin: 0;
+    list-style: none;
+    display: inline-flex;
+    /* padding: 0; */
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+</style>

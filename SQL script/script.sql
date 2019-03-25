@@ -1,0 +1,47 @@
+/*=========Table Client============*/
+CREATE TABLE TClient(
+  CLIId VARCHAR(30) PRIMARY KEY,
+  CLIMail VARCHAR(255) NOT NULL,
+  CLIPassword VARCHAR(255) NOT NULL,
+  CLIDateInscription DATE NOT NULL,
+  CLINom VARCHAR(50) NOT NULL,
+  CLIPrenom VARCHAR(40) NOT NULL,
+  CLIDateNaissance DATE NOT NULL,
+  CLIVerif INT DEFAULT 0,
+  CLIAdresse VARCHAR(255) NOT NULL,
+  CLIZip INT NOT NULL
+);
+
+
+/*=========Table Categorie============*/
+CREATE TABLE TCategorie(
+  CATCode VARCHAR(8) PRIMARY KEY,
+  CATLibelle VARCHAR(50) NOT NULL,
+  CATDescription TEXT NOT NULL
+);
+
+/*=========Table Chalet============*/
+CREATE TABLE TChalet(
+  CHALETId VARCHAR(30) PRIMARY KEY,
+  CHALETNom VARCHAR(255) NOT NULL,
+  CHALETSurface INT NOT NULL,
+  CHALETAdresse VARCHAR(255) NOT NULL,
+  CHALETZip INT NOT NULL,
+  CHALETVille VARCHAR(255) NOT NULL,
+  CHALETCatCode VARCHAR(8) NOT NULL,
+  CHALETProprioId VARCHAR(30) NOT NULL,
+  FOREIGN KEY (CHALETCatCode) REFERENCES TCategorie(CATCode),
+  FOREIGN KEY (CHALETPROPRIOId) REFERENCES TClient(CLIId)
+);
+
+/*=========Table Reserver============*/
+CREATE TABLE TReserver(
+  RESCliId VARCHAR(30),
+  RESChaletId VARCHAR(30),
+  RESDateArrive DATE NOT NULL,
+  RESDateDepart DATE NOT NULL,
+  RESPrix INT NOT NULL,
+  PRIMARY KEY (RESCliId, RESChaletId, RESDateArrive),
+  FOREIGN KEY (RESCliId) REFERENCES TClient(CliId),
+  FOREIGN KEY (RESChaletId) REFERENCES TChalet(CHALETId)
+);

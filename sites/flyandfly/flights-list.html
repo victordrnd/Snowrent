@@ -1,0 +1,663 @@
+
+
+ <html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Regardez tous les vols disponibles en jet privé ! - FlyandFly.fr</title>
+  <meta name="description" content="Choisissez puis réservez un vol en jet privée seul ou en coplanage ! Ou bien réservez un vol entièrement sur mesure !" />
+	<link rel="icon" href="assets/favicon-16x16.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	<!-- UIkit CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/css/uikit.min.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<!-- UIkit JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80503033-4"></script>
+  <script src="src/datepicker.min.js"></script>
+  <link rel="stylesheet" href="src/datepicker.min.css" />
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-80503033-4');
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": "1",
+      "item": {
+        "@id": "https://flyandfly.fr",
+        "name": "Accueil"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": "2",
+      "item": {
+        "@id": "https://flyandfly.fr/flights-list.php",
+        "name": "Listes des vols"
+      }
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+	<div class="full">
+		<nav> <span class="logo" style="margin-left:4%;"><span style="animation:fly 0.7s ease-in forwards; font-size:36px;font-family: 'Caveat', cursive; color:#2a2a2f;">Fly&Fly</span>
+			<img src="assets/bottom.svg" alt="logo flyandfly"style="min-width:50px;margin-left:-100px;margin-top:30px;width:4%; animation:logo 0.7s forwards ease-in" />
+			</span>
+			<a href="connexion.php" title="Page de connexion" name="connexion" style="float:right;margin-right:20px;margin-top:20px;background:#03e08e;color:#fff;letter-spacing:1px;" class="btn ">Connexion</a>
+			<a id="flight" href="clients/client.php"  style="float:right;margin-right:20px;margin-top:20px;background-color:transparent;color:#343a40;letter-spacing:1px;" class="btn ">Réserver un vol</a>
+		</nav>
+		<div class="container">
+			<h1 class="uk-heading-bullet text-center" style="font-weight:300;">Liste des vols disponibles </h1>
+
+
+      <div class="uk-margin-left" style="float:right">
+    <form method="get" id="formsearch" action="search.php" class="uk-search uk-search-default" style="width:300px !important">
+
+        <input  name="flyandflysearch" autocomplete="off" class="uk-search-input search" type="text" placeholder="Rechercher..." style="border-radius:4px">
+        <button type="submit" class="uk-search-icon-flip" uk-search-icon></button>
+    </form>
+
+
+
+
+
+
+</div>
+
+<div uk-filter="target: .js-filter">
+  <button class="uk-button uk-button-default" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Voir plus de filtres
+  </button>
+<div class="collapse" id="collapseExample">
+
+<div class="uk-grid-small uk-flex-middle" id="filterbar" uk-grid>
+     <div class="uk-width-expand">
+
+         <div class="uk-grid-small uk-grid-divider uk-child-width-auto" uk-grid>
+             <div>
+                 <ul class="uk-subnav uk-subnav-pill" uk-margin>
+                     <li class="uk-active" uk-filter-control><a href="#">Réinitialiser</a></li>
+                 </ul>
+             </div>
+             <div>
+                 <ul class="uk-subnav uk-subnav-pill" uk-margin>
+                     <li uk-filter-control="[data-class='Very-light']"><a href="#">Very-light</a></li>
+                     <li uk-filter-control="[data-class='Turbopropulseur']"><a href="#">Turbopropulseur</a></li>
+                     <li uk-filter-control="[data-class='Light']"><a href="#">Light</a></li>
+                     <li uk-filter-control="[data-class='Mid-size']"><a href="#">Mid-size</a></li>
+                     <li uk-filter-control="[data-class='Super Mid-size']"><a href="#">Super Mid-size</a></li>
+                     <li uk-filter-control="[data-class='Large']"><a href="#">Large</a></li>
+
+                 </ul>
+             </div>
+             <div>
+                 <ul class="uk-subnav uk-subnav-pill" uk-margin>
+                   <li><input id="datepicker" placeholder="2018-11-21" readonly autocomplete="off" data-toggle="datepicker" uk-filter-control="" class="uk-input" required name="date"  /></li>
+                 </ul>
+             </div>
+
+         </div>
+
+     </div>
+     <div class="uk-width-auto uk-text-nowrap">
+
+
+       <span  uk-filter-control="sort: data-date; order: desc"><a class="uk-icon-link" href="#" uk-icon="icon: arrow-down"></a></span>
+       <span class="uk-active" uk-filter-control="sort: data-date"><a class="uk-icon-link" href="#" uk-icon="icon: arrow-up"></a></span>
+
+     </div>
+ </div>
+
+
+
+
+
+
+</div>
+ <a id="filter" href="#" class="uk-active" uk-filter-control="" hidden></a>
+
+			<ul class="js-filter uk-child-width-1-2@m uk-child-width-1-1@s uk-child-width-1-3@l uk-child-width-1-4@xl uk-grid-match uk-text-center uk-grid" style="margin-top:100px;">
+
+<li class="" data-date="2018-12-21" data-prix="4999" data-class="Super Mid-size">
+	<div class="card uk-box-shadow-small uk-box-shadow-hover-large" style="display:inline-block;padding-right:7%;padding-left:7%; margin-top:30px;">
+		<h3 class="uk-card-title uk-margin-remove-bottom" style="white-space: nowrap;text-overflow: ellipsis;">Paris (LBG)  <i class="fas fa-angle-right uk-text-success"></i>  Mahe (SEZ)</h3>
+
+		<div class="card-body" style="text-align:left; padding: 0.25rem;">
+			<p><i class="fas fa-swatchbook"></i>
+				sièges réservés :
+				5 sièges			</p>
+			<p><i class="far fa-calendar-minus"></i> Date du vol :
+				<time datetime="2016-04-01T19:00">
+					Dec 21st, 2018 à 10:00				</time>
+			</p>
+			<p><i class="fas fa-compass"></i> Distance du vol :
+				7861km</p>
+			<p style="white-space: nowrap;"><i class="fas fa-user-tie"></i> Classe :
+				Super Mid-size			</p>
+			<div class="card-body" style="padding:0rem;margin-bottom:30px;">
+				<img alt="Carte du vol en jet privé"src="https://maps.googleapis.com/maps/api/staticmap?center=Paris+-+Le+Bourget+%28LBG%29&size=800x800&maptype=terrain
+&markers=color:white%7Dlabel:S%7CParis+-+Le+Bourget+%28LBG%29&markers=color:0x03e08e%7Clabel:A%7CMahe+-+Seychelles+Intl+%28SEZ%29&scale=2&style=feature:road.highway%7Celement:geometry%7Cvisibility:simplified%7Ccolor:0x746854&style=feature:landscape%7Celement:geometry.fill%7Ccolor:0x242f3f&style=feature:poi.park%7Celement:geometry.fill%7Ccolor:0x253c3f&style=feature:water%7Celement:geometry.fill%7Ccolor:0x577cb7&path=color:0x03e08e|weight:5|Paris+-+Le+Bourget+%28LBG%29|Mahe+-+Seychelles+Intl+%28SEZ%29&key=AIzaSyDBEnxSb3v2GfhC6WWpFYGzel8iQFD-87Y" />
+				<div class="card-body">
+					<h5 style="text-align:center;">4 999€ / <img alt="prix par siège" src="https://logomakr.com/media/clipart/tnp_smashicons/1027004.svg" style="width:20px;margin-top:-5px;"/></h5>
+				</div> <span class="uk-badge " style="background-color:#9e9ea5;opacity:0.7;text-align:center;margin-left: auto;margin-right: auto;display: block;margin-bottom:15px;">en attente</span>
+				<div class="uk-grid-small uk-container-center" uk-grid>
+					<div class="uk-width-1-2@s">
+						<!--<a href="#" class="btn btn-outline-secondary" >Devenir le pilote</a>-->
+					</div>
+					<div class="uk-width-1-1@s "> <a href="flights/vol-24c26ddd" class="btn uk-float-right" style="background-color:#03e08e;color:#fff">Afficher les détails</a>
+					</div>
+				</div>
+			</div>
+		</div>
+</li>
+
+
+
+<li class="" data-date="2018-12-13" data-prix="4478" data-class="Large">
+	<div class="card uk-box-shadow-small uk-box-shadow-hover-large" style="display:inline-block;padding-right:7%;padding-left:7%; margin-top:30px;">
+		<h3 class="uk-card-title uk-margin-remove-bottom" style="white-space: nowrap;text-overflow: ellipsis;">Paris (CDG)  <i class="fas fa-angle-right uk-text-success"></i>  New (JFK)</h3>
+
+		<div class="card-body" style="text-align:left; padding: 0.25rem;">
+			<p><i class="fas fa-swatchbook"></i>
+				sièges réservés :
+				13 sièges			</p>
+			<p><i class="far fa-calendar-minus"></i> Date du vol :
+				<time datetime="2016-04-01T19:00">
+					Dec 13th, 2018 à 10:00				</time>
+			</p>
+			<p><i class="fas fa-compass"></i> Distance du vol :
+				5840km</p>
+			<p style="white-space: nowrap;"><i class="fas fa-user-tie"></i> Classe :
+				Large			</p>
+			<div class="card-body" style="padding:0rem;margin-bottom:30px;">
+				<img alt="Carte du vol en jet privé"src="https://maps.googleapis.com/maps/api/staticmap?center=Paris+-+Charles+De+Gaulle+%28CDG%29&size=800x800&maptype=terrain
+&markers=color:white%7Dlabel:S%7CParis+-+Charles+De+Gaulle+%28CDG%29&markers=color:0x03e08e%7Clabel:A%7CNew+York+-+John+F+Kennedy+Intl+%28JFK%29&scale=2&style=feature:road.highway%7Celement:geometry%7Cvisibility:simplified%7Ccolor:0x746854&style=feature:landscape%7Celement:geometry.fill%7Ccolor:0x242f3f&style=feature:poi.park%7Celement:geometry.fill%7Ccolor:0x253c3f&style=feature:water%7Celement:geometry.fill%7Ccolor:0x577cb7&path=color:0x03e08e|weight:5|Paris+-+Charles+De+Gaulle+%28CDG%29|New+York+-+John+F+Kennedy+Intl+%28JFK%29&key=AIzaSyDBEnxSb3v2GfhC6WWpFYGzel8iQFD-87Y" />
+				<div class="card-body">
+					<h5 style="text-align:center;">4 478€ / <img alt="prix par siège" src="https://logomakr.com/media/clipart/tnp_smashicons/1027004.svg" style="width:20px;margin-top:-5px;"/></h5>
+				</div> <span class="uk-badge " style="background-color:#9e9ea5;opacity:0.7;text-align:center;margin-left: auto;margin-right: auto;display: block;margin-bottom:15px;">en attente</span>
+				<div class="uk-grid-small uk-container-center" uk-grid>
+					<div class="uk-width-1-2@s">
+						<!--<a href="#" class="btn btn-outline-secondary" >Devenir le pilote</a>-->
+					</div>
+					<div class="uk-width-1-1@s "> <a href="flights/vol-c0b378a0" class="btn uk-float-right" style="background-color:#03e08e;color:#fff">Afficher les détails</a>
+					</div>
+				</div>
+			</div>
+		</div>
+</li>
+
+
+</ul>
+</div>
+<p style="text-align:center">
+Votre recherche n'a donnée aucun résultat? Pourquoi ne pas réserver votre propre vol ? </br><a href="connexion.php" style="color:#03e08e;text-decoration:none;">accédez à votre espace client pour effectuer la réservation</a>
+</p>
+</div>
+<div class="container">
+  <div class="uk-grid-collapse uk-child-width-expand@s uk-text-center" uk-grid>
+    <div>
+      <div class=" uk-padding"><span style="margin-left:4.1%;"><a href="https://flyandfly.fr/"><span style="animation:fly 0.7s ease-in forwards; font-size:36px;font-family: 'Caveat', cursive; color:#2a2a2f;">Fly&Fly</span>
+        <img src="https://flyandfly.fr/assets/bottom.svg" alt="logo flyandfly foncé" style="min-width:50px;margin-left:-100px;margin-top:30px;width:4%; -webkit-animation:logo 0.7s forwards ease-in" />
+        </span></a>
+      </div>
+    </div>
+    <div>
+      <div class="uk-padding ">
+        <ul class="uk-list" style="text-align:left; margin-top:50px;">
+          <!--<li>Nous contacter</li>
+<li>Tarifs</li>-->
+          <li>Qui sommes-nous ?</li>
+          <a href="https://twitter.com/FlyandFlyFR" rel="noopener" target="_blank" title="twitter" name="twitter" class="twitter" uk-icon="twitter" style="margin-right:20px;"></a>
+          <a href="#" title="linkedin" target="_blank" rel="noopener" name="linkedin" class="linkedin" uk-icon="linkedin" style="margin-right:20px;"></a>
+          <a href="https://www.facebook.com/FlyandFly-2188249761451439" title="facebook" target="_blank" rel="noopener" name="vimeo" class="vimeo" uk-icon="facebook"></a>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class=" uk-padding ">
+        <ul class="uk-list" style="text-align:left; margin-top:50px;">
+          <li><a name="Security" href="#" style="color:#212529">Votre sécurité</a>
+          </li>
+          <li><a name="linkedin" href="https://flyandfly.fr/conditions-generales.html" style="color:#212529">Informations légales</a>
+          </li>
+          <li><a name="contact" href="https://flyandfly.fr/contact.php" style="color:#212529">Nous contacter</a></li>
+          <li><a name="Transparence de la plateforme" href="#" style="color:#212529">Transparence de la plateforme</a></li>
+          <li><a target="_blank" name="Foire aux questions" href="https://flyandfly.fr/aide/" style="color:#212529">Foire aux questions</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<style>
+a{text-decoration: none;
+color:inherit;}
+a:hover{text-decoration: none;
+color:inherit;}
+</style>
+
+</html>
+ <script>
+ $(".logo").click(function(){
+   window.location.href = 'index.html'
+ });
+
+
+  var input = document.getElementById("datepicker");
+  var filter =document.getElementById("filter");
+  $(document).on('change',input, function(event)
+ 	{
+  if ( input.value == "" )
+     {
+          filter.setAttribute( 'uk-filter-control', '' );
+          }
+
+            else
+              {
+                   filter.setAttribute( 'uk-filter-control', 'filter:[data-date*=\'' + input.value + '\']' );
+                   }
+
+ filter.click();
+ })
+
+  $('[data-toggle="datepicker"]').datepicker({
+    weekStart: 1,
+    format: 'yyyy-mm-dd',
+    months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+    daysMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+    days: ['Dimanche', 'Lundi', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    language: 'fr-FR'
+
+  });
+  </script>
+ <style>
+ .uk-card-title {
+    font-size: 1.4rem;
+    line-height: 1.4;
+}
+
+ .twitter:hover {
+   color:#03e08e;
+ }
+ .linkedin:hover {
+   color:#03e08e;
+ }
+ .vimeo:hover {
+   color:#03e08e;
+ }
+ .grey {
+   background-color: #2a2a2f;
+   width:100%;
+   margin-top: -111px;
+ }
+ .grey .uk-text-lead {
+   font-size:1.3rem;
+ }
+ .grey .uk-card-default {
+   box-shadow:none;
+ }
+ body {
+   overflow:auto;
+   user-select: none;
+ }
+ ::-webkit-scrollbar {
+ display: none;
+ }
+ .form-control {
+   border:2px solid #2a2a2f;
+   color:#2a2a2f;
+ }
+
+ .full .uk-card {
+   margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+   transform: translateY(-50%);
+   padding-top:10px;
+   padding-bottom:10px;
+   background-color:#03e08e;
+   border-radius:10px;
+ }
+ .full .uk-card-default .uk-card-title {
+   color:#fff;
+ }
+ .uk-card-default h3 {
+   font-weight:300;
+ }
+.uk-subnav-pill>.uk-active>a {
+  background-color:#03e08e;
+  color:#fff;
+}
+
+ @keyframes logo {
+   0% {
+     transform: rotate(16deg);
+   }
+
+   75% {
+     transform: rotate(12deg) translateX(75px) translateY(-20px);
+   }
+   100% {
+     transform: translateX(180px) translateY(-20px);
+   }
+ }
+ @keyframes fly {
+   0% {opacity:0}
+   100%{opacity:1}
+ }
+
+ @media (min-width: 768px){
+ .container{
+     max-width: 1124px;
+ }
+ }
+ @media (min-width: 1200px){
+ .container {
+     max-width: 1624px;
+ }
+ }
+ @media screen and (max-width: 800px) {
+   #flight{display:none}
+
+ 	html,body {
+ 		width:100%;
+ 		margin:0px;
+ 		padding:0px;
+ 		overflow-x:hidden;
+ 	}
+
+ }
+
+ .picked {
+   color:#03e08e;
+ }
+ .datepicker-panel>ul>li.picked, .datepicker-panel>ul>li.picked:hover {
+     color: #03e08e;
+ }
+ .datepicker-panel>ul>li.highlighted {
+     background-color: #fff;
+ }
+ html {
+   font-family: ProximaNova,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+ }
+ .datepicker-dropdown {
+     /* -webkit-box-shadow: 0 3px 6px #ccc; */
+
+     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+     border:none;
+     box-sizing: content-box;
+     position: absolute;
+     z-index: 1;
+ }
+ .datepicker-panel>ul>li:hover {
+     background-color: #fff;
+     color:#03e08E;
+ }
+ </style>
+ <!-- debut test-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.1/lodash.min.js"></script>
+
+     <script src="https://unpkg.com/fuse.js@2.5.0/src/fuse.min.js"></script>
+ <script src="src/airports.js"></script>
+ <script>
+ var options = {
+   shouldSort: true,
+   threshold: 0.4,
+   maxPatternLength: 32,
+   keys: [{
+     name: 'iata',
+     weight: 0.9
+   }, {
+     name: 'name',
+     weight: 0.8
+   }, {
+     name: 'city',
+     weight: 0.3
+   }]
+ };
+
+ var fuse = new Fuse(airports, options)
+
+ var ac = $('.search')
+   .on('click', function(e) {
+     e.stopPropagation();
+   })
+   .on('focus keyup', search)
+   .on('keydown', onKeyDown);
+
+ var wrap = $('<div>')
+   .addClass('autocomplete-wrapper')
+   .insertBefore(ac)
+   .append(ac);
+
+ var list = $('<div>')
+   .addClass('autocomplete-results')
+   .on('click', '.autocomplete-result', function(e) {
+     e.preventDefault();
+     e.stopPropagation();
+     selectIndex($(this).data('index'));
+   })
+   .appendTo(wrap);
+
+
+ $(document)
+   .on('mouseover', '.autocomplete-result', function(e) {
+     var index = parseInt($(this).data('index'), 10);
+     if (!isNaN(index)) {
+       list.attr('data-highlight', index);
+     }
+   })
+   .on('click', selectIndex);
+
+ function clearResults() {
+
+   results = [];
+   numResults = 0;
+   list.empty();
+ }
+
+
+ function selectIndex(index) {
+   if (results.length >= index + 1) {
+  ac.val(results[index].city + ' - '+ results[index].name + ' (' + results[index].iata + ')');
+  document.getElementById('formsearch').submit();
+     clearResults();
+   }
+ }
+
+ var results = [];
+ var numResults = 0;
+ var selectedIndex = -1;
+
+ function search(e) {
+   if (e.which === 38 || e.which === 13 || e.which === 40) {
+     return;
+   }
+
+   if (ac.val().length > 0) {
+     results = _.take(fuse.search(ac.val()), 4);
+     numResults = results.length;
+
+     var divs = results.map(function(r, i) {
+         return '<div class="autocomplete-result" data-index="'+ i +'">'
+              + '<div><b>'+ r.iata +'</b> - '+ r.name +'</div>'
+              + '<div class="autocomplete-location">'+ r.city +', '+ r.country +'</div>'
+              + '</div>';
+      });
+
+     selectedIndex = -1;
+     list.html(divs.join(''))
+       .attr('data-highlight', selectedIndex);
+
+   } else {
+     numResults = 0;
+     list.empty();
+   }
+ }
+
+ function onKeyDown(e) {
+   switch(e.which) {
+     case 38: // up
+       selectedIndex--;
+       if (selectedIndex <= -1) {
+         selectedIndex = -1;
+       }
+       list.attr('data-highlight', selectedIndex);
+       break;
+     case 13: // enter
+       selectIndex(selectedIndex);
+       break;
+     case 9: // enter
+       selectIndex(selectedIndex);
+       e.stopPropagation();
+       return;
+     case 40: // down
+       selectedIndex++;
+       if (selectedIndex >= numResults) {
+         selectedIndex = numResults-1;
+       }
+       list.attr('data-highlight', selectedIndex);
+       break;
+
+     default: return; // exit this handler for other keys
+   }
+   e.stopPropagation();
+   e.preventDefault(); // prevent the default action (scroll / move caret)
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </script>
+ <style>
+ .control-label {
+   display: block;
+ }
+
+ .autocomplete-wrapper {
+   position: relative;
+ }
+ .autocomplete-wrapper input {
+   width: 100%;
+ }
+
+ .autocomplete-results {
+   width:100%;
+   position: absolute;
+   background: white;
+   z-index: 1;
+   top: 100%;
+   left: 0;
+   font-size: 13px;
+   border: solid 1px #ddd;
+   border-top-width: 0;
+   border-bottom-color: #ccc;
+   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+ }
+
+ .autocomplete-result {
+   padding: 12px 15px;
+   border-bottom: solid 1px #eee;
+   cursor: pointer;
+ }
+
+ .autocomplete-result:last-child {
+   border-bottom-width: 0;
+ }
+
+ .autocomplete-location {
+   opacity: .8;
+   font-size: smaller;
+ }
+
+ .autocomplete-results[data-highlight='0'] > :nth-child(1) {
+   color: white;
+   background: #03e08e;
+   border-bottom-color: #26C9FF;
+   outline: solid 0px #00b6f2;
+ }
+
+ .autocomplete-results[data-highlight='1'] > :nth-child(2) {
+   color: white;
+   background: #03e08e;
+   border-bottom-color: #26C9FF;
+   outline: solid 0px #00b6f2;
+ }
+
+ .autocomplete-results[data-highlight='2'] > :nth-child(3) {
+   color: white;
+   background: #03e08e;
+   border-bottom-color: #26C9FF;
+   outline: solid 0px #00b6f2;
+ }
+
+ .autocomplete-results[data-highlight='3'] > :nth-child(4) {
+   color: white;
+   background: #03e08e;
+   border-bottom-color: #26C9FF;
+   outline: solid 0px #00b6f2;
+ }
+
+ .autocomplete-results[data-highlight='4'] > :nth-child(5) {
+   color: white;
+   background: #03e08e;
+   border-bottom-color: #26C9FF;
+   outline: solid 0px #00b6f2;
+ }
+
+ .autocomplete-results[data-highlight='5'] > :nth-child(6) {
+   color: white;
+   background: #03e08e;
+   border-bottom-color: #26C9FF;
+   outline: solid 1px #00b6f2;
+ }
+
+ .autocomplete-results[data-highlight='6'] > :nth-child(7) {
+   color: white;
+   background: #03e08e;
+   border-bottom-color: #2a2a2f;
+   outline: solid 0px #00b6f2;
+ }
+
+ .autocomplete-results[data-highlight='7'] > :nth-child(8) {
+   color: white;
+   background: #03e08e;
+   border-bottom-color: #2a2a2f;
+   outline: solid 0px #00b6f2;
+ }
+ </style>
+ <!--Fin test-->
+
+
+
+ 

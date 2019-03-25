@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Plop PHP XML Sitemap Generator 2.4 https://www.plop.at -->
+<!-- Date: 2018-09-10 01:42:41 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://flyandfly.fr/</loc>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://flyandfly.fr/register.php</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://flyandfly.fr/flights/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://flyandfly.fr/conditions-generales.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://flyandfly.fr/flights/vol-257c7cec</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://flyandfly.fr/flights-list.php</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://flyandfly.fr/register.php?status=client</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://flyandfly.fr/connexion.php</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>
