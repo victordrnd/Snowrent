@@ -10,6 +10,8 @@ class Chalet
   public function __construct(){
     $this->bdd = new Crud;
   }
+
+
   /**
   * Permet l'ajout d'un chalet à la base de donnée
   * @param string $nom
