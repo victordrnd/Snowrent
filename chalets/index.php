@@ -1,42 +1,38 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/includes/header.php';
+include '../includes/header.php';
+$chalet= new Chalet;
+$chaletlist = $chalet->selectAll();
+$defaulturl = "'".ROOTDIR."assets/404.png'";
 ?>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-<div class="card-deck mx-auto">
-  <div class="card">
-    <img class="card-img-top" src="http://atelier-brun-architectes.com/wp-content/uploads/2015/12/Chalet-montagne-la-clusaz-haute-savoie-4-1024x718.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Chalet 1</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    </div>
-    <div class="card-footer">
-      <a href="#" class="btn btn-primary float-right">500€</a>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="https://www.france-montagnes.com/sites/default/files/pages/01-villaroger.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Chalet 2</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-    </div>
-    <div class="card-footer">
-      <a href="#" class="btn btn-primary float-right">500€</a>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="https://www.maisonapart.com/images/normal/20140109_182648_01-pm02067.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Chalet 3</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-    </div>
-    <div class="card-footer">
-      <a href="#" class="btn btn-primary float-right">500€</a>
+<body>
+  <div class="container">
+    <a href="../" class="text-dark"><i data-feather="chevron-left"></i></a>
+    <div class="row d-flex">
+      <?php
+      if(empty($chaletlist[0])){
+        echo '<div class="alert alert-secondary mx-auto" role="alert">
+        Aucune location n&apos;est disponible pour le moment, veuillez revenir très bientôt.
+        </div>';
+      }
+      foreach ($chaletlist as $chalet ) {
+        echo '<div class="col-12 col-sm-6 col-md-4 col-lg-4 mt-4 d-flex">
+        <div class="card shadow-small border-0 flex-fill">
+        <img class="card-img-top" src="'.ROOTDIR.'upload/chalets/'.$chalet['CHALETId'].'.png" onerror="this.src='.$defaulturl.'"/>
+        <div class="card-body">
+        <h3 class="card-title">'.$chalet['CHALETNom'].'</h3>
+        <p class="card-text">'.$chalet['CHALETDescription'].'</p>
+        <a class="btn btn-secondary text-white float-right" href="details?id='.$chalet['CHALETId'].'">Afficher les détails</a>
+        </div>
+        </div>
+        </div>';
+      }
+      ?>
     </div>
   </div>
-</div>
+</body>
 
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/includes/footer/footer.php';
+include '../includes/footer/footer.php';
 ?>

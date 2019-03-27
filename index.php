@@ -46,7 +46,7 @@ include 'includes/header.php';
               <li>Piscine Intérieur - Sauna - Hammam</li>
               <li>Chalet Prestige</li>
             </ul>
-            <a class="btn btn-secondary text-white w-100">Découvrir</a>
+            <a href="http://cr-devtux16.leschartreux.com/~v.durand/chalets/details/?id=57bc7969ec5bd00ab763804384ad16" class="btn btn-secondary text-white w-100">Découvrir</a>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@ include 'includes/header.php';
               <li>8 - 10 Personnes</li>
               <li>Spa - Sauna</li>
             </ul>
-            <a class="btn btn-secondary text-white w-100">Découvrir</a>
+            <a href="http://cr-devtux16.leschartreux.com/~v.durand/chalets/details/?id=32bdab6506ac3354808da9db5b707e" class="btn btn-secondary text-white w-100">Découvrir</a>
           </div>
         </div>
       </div>
@@ -76,12 +76,12 @@ include 'includes/header.php';
               <li>12 ou 18 Personnes</li>
               <li>Chalet Luxe</li>
             </ul>
-            <a class="btn btn-secondary text-white w-100">Découvrir</a>
+            <a href="http://cr-devtux16.leschartreux.com/~v.durand/chalets/details/?id=e0eed2fa15af866cc04e4475e03be2" class="btn btn-secondary text-white w-100">Découvrir</a>
           </div>
         </div>
       </div>
     </div>
-    <a class="btn btn-primary mt-4 col-md-4 col-sm-12 d-block ml-auto mr-auto text-white">Afficher plus</a>
+    <a href="http://cr-devtux16.leschartreux.com/~v.durand/chalets/" class="btn btn-primary mt-4 col-md-4 col-sm-12 d-block ml-auto mr-auto text-white">Afficher plus</a>
   </div>
 <!--Carrousel-->
 <div class="carousel slide mt-5 mb-5 "  data-ride="carousel">

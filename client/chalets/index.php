@@ -20,8 +20,8 @@ $defaulturl = "'".ROOTDIR."assets/404.png'";
     <div class="row">
       <?php
       foreach ($chaletlist as $chalet ) {
-        echo '<div class="col-12 col-sm-6 col-md-4 col-lg-4 mt-4">
-        <div class="card shadow-small border-0" >
+        echo '<div class="col-12 col-sm-6 col-md-4 col-lg-4 mt-4 d-flex">
+        <div class="card shadow-small border-0 flex-fill" >
         <img class="card-img-top" src="'.ROOTDIR.'upload/chalets/'.$chalet['CHALETId'].'.png" onerror="this.src='.$defaulturl.'"/>
         <div class="card-body">
         <h3 class="card-title">'.$chalet['CHALETNom'].'</h3>

@@ -55,7 +55,7 @@ class Crud extends Database
     $value = implode(',',$value);
     $query.= ' VALUES ('.$value.')';
     //echo $query;
-    return;
+    return $this->query($query);
   }
 
   /**
@@ -71,7 +71,8 @@ class Crud extends Database
     else{
       $query = 'DELETE FROM '.$table.' WHERE '.$where;
     }
-    return;
+
+    return $this->query($query);
   }
   /**
   * Permet de modifier des données dans la base de données
@@ -97,7 +98,7 @@ class Crud extends Database
       }
       $query .= ' WHERE '.$where;
       //echo $query;
-      return;
+      return $this->query($query);
 
   }
   /**
