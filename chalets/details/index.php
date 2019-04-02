@@ -5,7 +5,8 @@ $chaletid = $_GET['id'];
 $_SESSION['reservationChaletId'] = $chaletid;
 $chaletinfo = $chalet->details($chaletid);
 ?>
-
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 <body>
 
   <title>SnowRent - <?= $chaletinfo[0]['CHALETNom']?></title>
@@ -56,10 +57,96 @@ $chaletinfo = $chalet->details($chaletid);
       </div>
     </div>
 
+    <div class="row mt-5">
+      <div id='map' class="w-100 h-50"></div>
+    </div>
+
 
 
   </body>
+  <script>
+  var adresse = encodeURIComponent('<?=$chaletinfo[0]['CHALETVille']?> <?=$chaletinfo[0]['CHALETAdresse']?>');
+   var url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+adresse+'.json?access_token=pk.eyJ1IjoibWF0dGZpY2tlIiwiYSI6ImNqNnM2YmFoNzAwcTMzM214NTB1NHdwbnoifQ.Or19S7KmYPHW8YjRz82v6g&cachebuster=1554043397048&autocomplete=true';
+   fetch(url)
+   .then((resp) => resp.json())
+   .then(function(data){
+     mapboxgl.accessToken = 'pk.eyJ1IjoidmljdG9yZHJuZCIsImEiOiJjanR3eHhhY3oxNDUwNDNsemE1aG5peGl2In0.YeRJsFQXOp8GFHBiQsoHEQ';
+     var map = new mapboxgl.Map({
+       container: 'map',
+       style: 'mapbox://styles/victordrnd/cjtzfnlg20mld1flwntaganwl',
+       zoom: 17,
+       center: data['features'][0]['center'],
+       pitch: 45,
+       bearing: -17.6,
+       logo : false,
+       attributionControl: false
+     });
+     map.on('load', function() {
+       var layers = map.getStyle().layers;
+       var labelLayerId;
+       for (var i = 0; i < layers.length; i++) {
+         if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+           labelLayerId = layers[i].id;
+           break;
+         }
+       }
+       map.loadImage('../../assets/map/pin.png', function(error, image) {
+         if (error) throw error;
+         map.addImage('cat', image);
+         map.addLayer({
+           "id": "points",
+           "type": "symbol",
+           "source": {
+             "type": "geojson",
+             "data": {
+               "type": "FeatureCollection",
+               "features": [{
+                 "type": "Feature",
+                 "geometry": {
+                   "type": "Point",
+                   "coordinates": data['features'][0]['center']
+                 }
+               }]
+             }
+           },
+           "layout": {
+             "icon-image": "cat",
+             "icon-size": 0.25
+           }
+         });
+         map.addLayer({
+           'id': '3d-buildings',
+           'source': 'composite',
+           'source-layer': 'building',
+           'filter': ['==', 'extrude', 'true'],
+           'type': 'fill-extrusion',
+           'minzoom': 15,
+           'paint': {
+             'fill-extrusion-color': '#fff',
+             // use an 'interpolate' expression to add a smooth transition effect to the
+             // buildings as the user zooms in
+             'fill-extrusion-height': [
+               "interpolate", ["linear"], ["zoom"],
+               15, 0,
+               15.05, ["get", "height"]
+             ],
+             'fill-extrusion-base': [
+               "interpolate", ["linear"], ["zoom"],
+               15, 0,
+               15.05, ["get", "min_height"]
+             ],
+             'fill-extrusion-opacity': 0.98
+           }
+         }, labelLayerId);
 
+       });
+     });
+   })
+   .catch(function(error){
+     console.log(error);
+   });
+
+  </script>
 <?php
 include '../../includes/footer/footer.php';
 ?>

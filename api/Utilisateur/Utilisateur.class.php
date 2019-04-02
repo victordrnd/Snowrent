@@ -71,9 +71,9 @@ class Utilisateur
         $value = array(tostring($id), tostring($mail), tostring($password1), $date, tostring($nom), tostring($prenom));
         $row = "CLIId, CliMail, CLIPassword, CLIDateInscription, CLINom, CLIPrenom";
         $req = $this->bdd->insert('tclient', $value, $row);
-        $nometprenom = $nom.' '.$prenom;
-        //$mailclass = new Mail;
-        //$mailclass->inscription($id,$mail,$nometprenom);
+        $nometprenom = urlencode($nom.' '.$prenom);
+        $url = 'http://mailserver.victordurand.fr/?mail='.$mail.'&id='.$id.'&name='.$nometprenom;
+        $result = file_get_contents($url);
         $_SESSION['mail'] = $mail;
         $_SESSION['prenom'] = $prenom;
         $_SESSION['nom'] = $nom;

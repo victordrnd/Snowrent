@@ -4,6 +4,7 @@ include $root.'/includes/header.php';
 
 if(isset($_POST['submit'])){
   $user = new Utilisateur;
+  
   $response = $user->inscription($_POST['mail'], $_POST['password1'],$_POST['password2'], $_POST['nom'], $_POST['prenom']);
   $display = 'd-block';
 }else{
