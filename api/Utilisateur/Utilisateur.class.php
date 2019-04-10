@@ -72,7 +72,7 @@ class Utilisateur
         $row = "CLIId, CliMail, CLIPassword, CLIDateInscription, CLINom, CLIPrenom";
         $req = $this->bdd->insert('tclient', $value, $row);
         $nometprenom = urlencode($nom.' '.$prenom);
-        $url = 'http://mailserver.victordurand.fr/?mail='.$mail.'&id='.$id.'&name='.$nometprenom;
+        $url = 'http://178.128.166.86/?mail='.$mail.'&id='.$id.'&name='.$nometprenom;
         $result = file_get_contents($url);
         $_SESSION['mail'] = $mail;
         $_SESSION['prenom'] = $prenom;
