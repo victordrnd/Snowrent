@@ -4,7 +4,7 @@ include $root.'/includes/header.php';
 
 if(isset($_POST['submit'])){
   $user = new Utilisateur;
-  
+
   $response = $user->inscription($_POST['mail'], $_POST['password1'],$_POST['password2'], $_POST['nom'], $_POST['prenom']);
   $display = 'd-block';
 }else{
@@ -53,7 +53,7 @@ if(isset($_SESSION['id'])){
           <input type="checkbox" class="form-check-input" >
           <label class="form-check-label" >Se souvenir de moi</label>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary width-1">Se connecter</button>
+        <button type="submit" name="submit" class="btn btn-primary width-1">S'inscrire'</button>
       </form>
     </div>
   </div>

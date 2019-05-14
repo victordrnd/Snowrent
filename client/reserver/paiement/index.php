@@ -32,7 +32,7 @@ $_SESSION['RESTarif'] = $tarif;
       <div class="col-md-3 col-12">
         <div class="card shadow-small border-0">
           <img src="<?=ROOTDIR?>upload/chalets/<?=$_SESSION['reservationChaletId']?>.png" onerror="this.src='<?=ROOTDIR?>assets/404.png'" class="card-img-top"/>
-          <div class="card-body ">test - 45€ par nuit</div>
+          <div class="card-body ">test - <?=$chaletinfo[1]['CATPrix']?>€ par nuit par personne</div>
         </div>
       </div>
       <div class="col-md-7 col-12 shadow-small">

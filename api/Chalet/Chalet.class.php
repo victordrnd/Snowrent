@@ -34,13 +34,23 @@ class Chalet
     $surface = intval($surface);
     $zip = intval($zip);
     $_SESSION['last_chalet_id'] = $id;
-    echo $id;
     $rows = "CHALETId, CHALETNom, CHALETSurface, CHALETAdresse, CHALETZip, CHALETVille, CHALETCatCode, CHALETProprioId";
     $values = array(tostring($id),$nom,$surface,$adresse,$zip,$ville,$catcode,$proprioid);
     $req = $this->bdd->insert('tchalet', $values, $rows);
 
     header('location:details/');
   }
+
+
+
+
+
+
+
+
+
+
+
 
   /**
   * Permet d'obtenir des informations sur un chalet en particulier
@@ -62,6 +72,14 @@ class Chalet
   }
 
 
+
+
+
+
+
+
+
+
   /**
   * Permet d'obtenir des informations sur un chalet en particulier et vérifie s'il appartient bien à un propriétaire
   * @param string $chaletid
@@ -81,6 +99,13 @@ class Chalet
   }
 
 
+
+
+
+
+
+
+
   /**
   * Retourne tout les chalets d'un propriétaire
   * @param string $proprioid
@@ -90,6 +115,13 @@ class Chalet
     $list = $this->bdd->select('tchalet', 'CHALETNom, CHALETId, CHALETDescription', 'CHALETProprioId='.tostring($proprioid));
     return $list;
   }
+
+
+
+
+
+
+
 
   /**
   * Retourne tout les chalets de la table
@@ -101,14 +133,28 @@ class Chalet
   }
 
 
+
+
+
+
+
+
   /**
   * Retourne les informations sur le propriétaire d'un chalet
+  * @param string $chaletid
   * @return array $proprioinfo
   */
   public function getProprietaire($chaletid){
     $proprio = $this->bdd->select('tclient, tchalet', 'CLIId, CLINom, CLIPrenom', 'CHALETId='.tostring($chaletid));
     return $proprio;
   }
+
+
+
+
+
+
+
 
 
   /**
@@ -133,6 +179,12 @@ class Chalet
     //return $id.'.png';
   }
 
+
+
+
+
+
+
   /**
   * Change la description d'un chalet
   * @param string $chaletid
@@ -142,6 +194,11 @@ class Chalet
   public function setDescription($chaletid, $description){
     $this->bdd->update('tchalet', array('CHALETDescription' => $description), 'CHALETId ='.tostring($chaletid));
   }
+
+
+
+
+
 
   /**
   * Edite un chalet en particulier
@@ -157,6 +214,10 @@ class Chalet
     return $this->bdd->update('tchalet', array('CHALETNom' => htmlspecialchars($chaletnom), 'CHALETVille' => htmlspecialchars($chaletville), 'CHALETAdresse' => htmlspecialchars($chaletadresse), 'CHALETZip' =>htmlspecialchars($chaletzip), 'CHALETDescription' => htmlspecialchars($chaletdescription)), 'CHALETid='.tostring($chaletid));
   }
 
+
+
+
+
   /**
   * Supprime un chalet
   * @param string $chaletid
@@ -165,8 +226,10 @@ class Chalet
   public function delete($chaletid){
     $this->bdd->delete('treserver', 'RESChaletId='.tostring($chaletid));
     $response = $this->bdd->delete('tchalet', 'CHALETId='.tostring($chaletid));
+    if(file_exists($root.'/upload/chalets/'.$chaletid.'.png')){
+      unlink($root.'/upload/chalets/'.$chaletid.'.png');
+    }
     return $response;
-    //echo $response;
   }
 
 }

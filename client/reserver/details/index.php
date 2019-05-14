@@ -49,8 +49,8 @@ $chaletinfo = $chalet->details($chaletid);
       <a href="../informations/" class="btn btn-secondary text-white  ml-auto mr-auto d-block ml-md mr-md mr-5 ml-5 p-2 ">Continuer la réservation <i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
-  <div class="row mt-5">
-    <div id='map' class="w-100 h-50"></div>
+  <div class="row mt-5 h-50">
+    <div id='map' class="w-100 h-100"></div>
   </div>
 
 

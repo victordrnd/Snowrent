@@ -1,19 +1,22 @@
 <?php
 $root = '/partages/priv/btsdcg/info1/v.durand/public_html';
 include $root.'/includes/header.php';
+if(isset($_SESSION['id']) && $_SESSION['CLIVerif'] != 1){
 
-$utilisateur = new Utilisateur;
-$utilisateurinfo = $utilisateur->details($_SESSION['id']);
-if(isset($_POST['submit'])){
-  $utilisateur->verify($_SESSION['id']);
-  $_SESSION['CLIVerif'] = 1;
-  $utilisateur->setDateNaissance($utilisateurinfo[0]['CLIId'], $_POST['CLIDateNaissance']);
-  $utilisateur->setZip($utilisateurinfo[0]['CLIId'], $_POST['CLIZip']);
-  $utilisateur->setAdresse($utilisateurinfo[0]['CLIId'], htmlspecialchars($_POST['CLIAdresse']));
-  echo '<meta http-equiv="refresh" content="0;URL='.ROOTDIR.'client/">';
-  exit;
-}
- ?>
+
+  $utilisateur = new Utilisateur;
+  $utilisateurinfo = $utilisateur->details($_SESSION['id']);
+  if(isset($_POST['submit'])){
+    $utilisateur->verify($_SESSION['id']);
+    $_SESSION['CLIVerif'] = 1;
+    $utilisateur->setDateNaissance($utilisateurinfo[0]['CLIId'], $_POST['CLIDateNaissance']);
+    $utilisateur->setZip($utilisateurinfo[0]['CLIId'], $_POST['CLIZip']);
+    $utilisateur->setAdresse($utilisateurinfo[0]['CLIId'], htmlspecialchars($_POST['CLIAdresse']));
+    echo '<meta http-equiv="refresh" content="0;URL='.ROOTDIR.'client/">';
+    exit;
+  }
+
+?>
 <body>
   <div class="container">
     <div class="row mt-5">
@@ -46,5 +49,9 @@ if(isset($_POST['submit'])){
 </body>
 
 <?php
+}
+else {
+  echo 'Profil déja vérifié';
+}
 include $root.'/includes/footer/footer.php';
- ?>
+?>

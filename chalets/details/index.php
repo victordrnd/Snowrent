@@ -57,8 +57,8 @@ $chaletinfo = $chalet->details($chaletid);
       </div>
     </div>
 
-    <div class="row mt-5">
-      <div id='map' class="w-100 h-50"></div>
+    <div class="row mt-5 h-50">
+      <div id='map' class="w-100 h-100"></div>
     </div>
 
 
